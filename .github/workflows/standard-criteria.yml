@@ -3,6 +3,8 @@ name: Standard Criteria
 on:
   pull_request:
     branches: [ main ]
+  push:
+    branches: [ main ]
 
 jobs:
   build-gradle-project:
