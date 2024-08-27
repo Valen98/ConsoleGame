@@ -10,4 +10,7 @@ public abstract class Element {
     }
 
 
+    public Element() {
+        this.weakness = new HashMap<>();
+    }
 }

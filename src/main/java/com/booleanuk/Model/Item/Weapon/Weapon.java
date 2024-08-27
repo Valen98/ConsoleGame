@@ -1,9 +1,11 @@
 package com.booleanuk.Model.Item.Weapon;
 
-import com.booleanuk.Model.Item.Item;
 import com.booleanuk.Model.Attack.Attack;
+import com.booleanuk.Model.Item.Wearable;
 
-public abstract class Weapon extends Item {
+import java.util.Random;
+
+public abstract class Weapon extends Wearable {
     private float minDamage;
     private float maxDamage;
     private float criticalChance;
@@ -18,5 +20,12 @@ public abstract class Weapon extends Item {
         this.criticalChance = criticalChance;
         this.criticalMultiplier = criticalMultiplier;
         this.missChance = missChance;
+    }
+
+
+    public float getDamage() {
+        Random r = new Random();
+
+        return r.nextFloat(minDamage, maxDamage);
     }
 }
