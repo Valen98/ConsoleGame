@@ -1,6 +1,5 @@
-package com.booleanuk.Model.Entity.Element;
+package com.booleanuk.Model.Element;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Element {

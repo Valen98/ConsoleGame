@@ -1,4 +1,4 @@
-package com.booleanuk.Model.Entity.Element;
+package com.booleanuk.Model.Element;
 
 import java.util.HashMap;
 
