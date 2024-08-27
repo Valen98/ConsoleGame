@@ -4,6 +4,7 @@ import com.booleanuk.Model.Element.Element;
 import com.booleanuk.Model.Item.Item;
 import com.booleanuk.Model.Item.Shield;
 import com.booleanuk.Model.Item.Weapon.Weapon;
+import com.booleanuk.Model.Item.potion.Potion;
 import com.booleanuk.Model.Spell.Spell;
 
 import java.util.ArrayList;
@@ -43,23 +44,23 @@ public abstract class Entity {
     }
 
 
-
-    public void decreaseHP(float amount) {
+    public float decreaseHP(float amount) {
         this.HP -= amount;
+        return amount;
     }
 
-    public void getAttacked(Weapon enemyWeapon) {
-        if (shield != null) {
-            decreaseHP(shieldChecker(enemyWeapon));
+    public float getAttacked(Weapon enemyWeapon) {
+        if (this.shield != null) {
+            return decreaseHP(shieldChecker(enemyWeapon));
         } else {
-            decreaseHP(enemyWeapon.getDamage());
+            return decreaseHP(enemyWeapon.getDamage());
         }
     }
 
     private float shieldChecker(Weapon enemyWeapon) {
         Random r = new Random();
-        float blockChange = r.nextFloat(0, 100) / 100;
-        if (blockChange <= shield.getBlockChance()) {
+        float blockChance = r.nextFloat(0, 100) / 100;
+        if (blockChance <= shield.getBlockChance()) {
             System.out.println("Attack blocked");
             return 0;
         } else {
@@ -111,7 +112,9 @@ public abstract class Entity {
     }
 
     public void setShield(Shield shield) {
-        this.shield = shield;
+        if (inventory.contains(shield.getId())) {
+            this.shield = shield;
+        }
     }
 
     public float getMana() {
@@ -155,8 +158,7 @@ public abstract class Entity {
     }
 
     public void setWeapon(Weapon weapon) {
-        if(inventory.contains(weapon.getId())) {
-            System.out.println("Set weapong " + weapon);
+        if (inventory.contains(weapon.getId())) {
             this.weapon = weapon;
         }
     }
@@ -172,4 +174,9 @@ public abstract class Entity {
     public void setElement(Element element) {
         this.element = element;
     }
+
+    public boolean useHealthPotion() {
+        return this.inventory.removeHealthPotion();
+    }
+
 }
