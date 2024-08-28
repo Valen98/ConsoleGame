@@ -1,15 +1,14 @@
 package com.booleanuk.core;
 
 import com.booleanuk.Game;
-import com.booleanuk.Model.Element.Fire;
-import com.booleanuk.Model.Entity.Enemy;
-import Goblin;
-import com.booleanuk.Model.Entity.Player;
-import com.booleanuk.Model.Item.Shield;
-import com.booleanuk.Model.Item.Weapon.Dagger;
-import com.booleanuk.Model.Item.Weapon.Weapon;
-import com.booleanuk.Model.Item.WoodenShield;
-import com.booleanuk.Model.Item.potion.HealthPotion;
+import com.booleanuk.model.element.Fire;
+import com.booleanuk.model.entity.enemies.*;
+import com.booleanuk.model.entity.*;
+import com.booleanuk.model.item.Shield;
+import com.booleanuk.model.item.weapon.Dagger;
+import com.booleanuk.model.item.weapon.Weapon;
+import com.booleanuk.model.item.WoodenShield;
+import com.booleanuk.model.item.potion.HealthPotion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
