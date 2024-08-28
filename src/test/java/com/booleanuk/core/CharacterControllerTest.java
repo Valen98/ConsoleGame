@@ -3,7 +3,7 @@ package com.booleanuk.core;
 import com.booleanuk.Model.Element.Fire;
 import com.booleanuk.Model.Entity.CharacterController;
 import com.booleanuk.Model.Entity.Entity;
-import com.booleanuk.Model.Entity.Goblin;
+import Goblin;
 import com.booleanuk.Model.Entity.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
