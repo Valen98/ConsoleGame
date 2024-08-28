@@ -1,12 +1,11 @@
 package com.booleanuk;
 
-import com.booleanuk.Model.Entity.CharacterController;
-import com.booleanuk.Model.Entity.Entity;
-import com.booleanuk.Model.Entity.Player;
-import com.booleanuk.Model.Item.Item;
-import com.booleanuk.Model.Item.Weapon.Dagger;
-import com.booleanuk.Model.Room;
-import com.booleanuk.Model.Spell.Spell;
+import com.booleanuk.model.entity.CharacterController;
+import com.booleanuk.model.entity.Entity;
+import com.booleanuk.model.entity.Player;
+import com.booleanuk.model.item.Item;
+import com.booleanuk.model.Room;
+import com.booleanuk.model.spell.Spell;
 
 import java.util.ArrayList;
 

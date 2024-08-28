@@ -1,17 +1,17 @@
 package com.booleanuk.core;
 
-import com.booleanuk.Model.Element.Fire;
-import com.booleanuk.Model.Entity.CharacterController;
-import com.booleanuk.Model.Entity.Entity;
-import Goblin;
-import com.booleanuk.Model.Entity.Player;
+import com.booleanuk.model.element.Fire;
+import com.booleanuk.model.entity.CharacterController;
+import com.booleanuk.model.entity.Entity;
+import com.booleanuk.model.entity.enemies.*;
+import com.booleanuk.model.entity.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CharacterControllerTest {
 
     @Test
-    public void createCharacter(){
+    public void createCharacter() {
         Entity player = new Player("Cool");
         Entity goblin = new Goblin(new Fire(), 1);
 
