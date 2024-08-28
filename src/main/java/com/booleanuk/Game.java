@@ -33,7 +33,7 @@ public class Game {
 
     public void generateRooms() {
         for(int i = 0; i < 10; i++) {
-            this.rooms.add(new Room(roomLVL, nr_enemies, doors));
+            // this.rooms.add(new Room(roomLVL, nr_enemies, doors));
         }
     }
 
