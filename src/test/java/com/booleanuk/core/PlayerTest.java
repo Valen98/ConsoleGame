@@ -20,8 +20,9 @@ public class PlayerTest {
     Game game;
 
     public PlayerTest() {
-        this.game = new Game();
         player = new Player("Lynx");
+
+        this.game = new Game(player);
         this.enemy1 = new Goblin(new Fire(), 1);
 
         Weapon dagger = new Dagger("CoolDagger", 1, 10, 15, 0.1f, 1.5f, 0.1f);

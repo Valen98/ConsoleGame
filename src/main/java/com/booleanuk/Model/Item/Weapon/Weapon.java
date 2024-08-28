@@ -6,14 +6,14 @@ import com.booleanuk.Model.Item.Wearable;
 import java.util.Random;
 
 public abstract class Weapon extends Wearable {
-    private float minDamage;
-    private float maxDamage;
+    private int minDamage;
+    private int maxDamage;
     private float criticalChance;
     private float criticalMultiplier = 2;
     private float missChance;
     private Attack attack;
 
-    public Weapon(String name, int requiredLvl, float minDamage, float maxDamage, float criticalChance, float criticalMultiplier, float missChance) {
+    public Weapon(String name, int requiredLvl, int minDamage, int maxDamage, float criticalChance, float criticalMultiplier, float missChance) {
         super(name, requiredLvl);
         this.minDamage = minDamage;
         this.maxDamage = maxDamage;
@@ -23,9 +23,9 @@ public abstract class Weapon extends Wearable {
     }
 
 
-    public float getDamage() {
+    public int getDamage() {
         Random r = new Random();
 
-        return r.nextFloat(minDamage, maxDamage);
+        return r.nextInt(minDamage, maxDamage);
     }
 }

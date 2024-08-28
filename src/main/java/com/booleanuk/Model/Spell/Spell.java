@@ -6,13 +6,13 @@ import com.booleanuk.Model.Element.Element;
 import java.util.Random;
 
 public abstract class Spell {
-    String name;
-    Element element;
-    String typeOfSpell;
-    float manaCost;
-    int dmg;
+    private String name;
+    private Element element;
+    private String typeOfSpell;
+    private int manaCost;
+    private int dmg;
 
-    public Spell(String name, Element element, String typeOfSpell, float manaCost, int dmg) {
+    public Spell(String name, Element element, String typeOfSpell, int manaCost, int dmg) {
         this.name = name;
         this.element = element;
         this.typeOfSpell = typeOfSpell;
@@ -20,7 +20,11 @@ public abstract class Spell {
         this.dmg = dmg;
     }
 
-    public float getDamage() {
+    public int getDamage() {
         return this.dmg;
+    }
+
+    public int getManaCost() {
+        return this.manaCost;
     }
 }

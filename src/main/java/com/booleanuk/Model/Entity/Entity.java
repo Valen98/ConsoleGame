@@ -12,9 +12,9 @@ import java.util.Random;
 
 public abstract class Entity {
     private String name;
-    private float HP;
+    private int HP;
     private Shield shield;
-    private float mana;
+    private int mana;
     private Element element;
     private Inventory inventory;
     private int level;
@@ -23,7 +23,7 @@ public abstract class Entity {
     private ArrayList<Spell> spells;
     private String id;
 
-    public Entity(String name, float baseHP, float baseMana) {
+    public Entity(String name, int baseHP, int baseMana) {
         this.name = name;
         this.HP = baseHP;
         this.mana = baseMana;
@@ -33,7 +33,7 @@ public abstract class Entity {
         this.shield = null;
     }
 
-    public Entity(String name, float baseHP, float baseMana, int level) {
+    public Entity(String name, int baseHP, int baseMana, int level) {
         this.name = name;
         this.HP = baseHP;
         this.mana = baseMana;
@@ -44,12 +44,18 @@ public abstract class Entity {
     }
 
 
-    public float decreaseHP(float amount) {
+    public int decreaseHP(int amount) {
         this.HP -= amount;
         return amount;
     }
 
-    public float getAttacked(Weapon enemyWeapon) {
+    protected int decreaseMana(int amount){
+        this.mana -= amount;
+
+        return amount;
+    }
+
+    public int getAttacked(Weapon enemyWeapon) {
         if (this.shield != null) {
             return decreaseHP(shieldChecker(enemyWeapon));
         } else {
@@ -57,7 +63,7 @@ public abstract class Entity {
         }
     }
 
-    private float shieldChecker(Weapon enemyWeapon) {
+    private int shieldChecker(Weapon enemyWeapon) {
         Random r = new Random();
         float blockChance = r.nextFloat(0, 100) / 100;
         if (blockChance <= shield.getBlockChance()) {
@@ -103,7 +109,7 @@ public abstract class Entity {
         return HP;
     }
 
-    public void setHP(float HP) {
+    public void setHP(int HP) {
         this.HP = HP;
     }
 
@@ -121,7 +127,7 @@ public abstract class Entity {
         return mana;
     }
 
-    public void setMana(float mana) {
+    public void setMana(int mana) {
         this.mana = mana;
     }
 
