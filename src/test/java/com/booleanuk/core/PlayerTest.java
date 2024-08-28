@@ -3,7 +3,7 @@ package com.booleanuk.core;
 import com.booleanuk.Game;
 import com.booleanuk.Model.Element.Fire;
 import com.booleanuk.Model.Entity.Enemy;
-import com.booleanuk.Model.Entity.Goblin;
+import Goblin;
 import com.booleanuk.Model.Entity.Player;
 import com.booleanuk.Model.Item.Shield;
 import com.booleanuk.Model.Item.Weapon.Dagger;

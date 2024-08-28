@@ -42,5 +42,4 @@ public class Game {
         entity.addItemToInventory(item);
     }
 
-
 }
