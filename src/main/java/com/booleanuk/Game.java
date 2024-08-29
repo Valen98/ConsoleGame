@@ -24,6 +24,7 @@ public class Game {
         this.player = player;
         this.characterController = new CharacterController();
         this.rooms = new ArrayList<>();
+        this.r = new Random();
     }
 
     public void attack(Entity attacker, Entity enemy){
@@ -37,6 +38,18 @@ public class Game {
     public void generateRooms() {
         GraphRoom graphRoom = new GraphRoom();
 
+        for (int i = 0; i < 4; i++) {
+            int numOfDoors = r.nextInt(1, 3);
+            int randomEnemies = r.nextInt(3);
+            Room room = new Room(idGenerator.generateId(5), 1, randomEnemies, numOfDoors);
+            Vertex v1 = graphRoom.addVertex(room);
+            for (int j = 0; j < numOfDoors; j++) {
+                Room adjRoom = new Room(idGenerator.generateId(5),1,  randomEnemies, 1);
+                Vertex v2 = graphRoom.addVertex(adjRoom);
+                graphRoom.addEdge(v1, v2);
+            }
+        }
+        /*
         Room room1 = new Room(idGenerator.generateId(5), 1, 2, 3);
         Room room2 = new Room(idGenerator.generateId(5), 1, 2, 1);
         Room room3 = new Room(idGenerator.generateId(5), 1, 2, 1);
@@ -52,10 +65,8 @@ public class Game {
         graphRoom.addEdge(v1, v3);
         graphRoom.addEdge(v1, v4);
         graphRoom.addEdge(v4, v5);
-
-        String roomTest = graphRoom.getAdjVertex().get(v1).get(0).getRoom().getId();
-        System.out.println(roomTest);
-        System.out.println(graphRoom.getAdjVertex().get(v1));
+            */
+        System.out.println(graphRoom.getAdjVertex());
     }
 
     public void addItemToEntity(Entity entity, Item item) {
