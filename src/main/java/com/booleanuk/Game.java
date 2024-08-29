@@ -1,6 +1,7 @@
 package com.booleanuk;
 
 import com.booleanuk.model.GraphRoom;
+import com.booleanuk.model.Vertex;
 import com.booleanuk.model.entity.CharacterController;
 import com.booleanuk.model.entity.Entity;
 import com.booleanuk.model.entity.Player;
@@ -41,18 +42,20 @@ public class Game {
         Room room3 = new Room(idGenerator.generateId(5), 1, 2, 1);
         Room room4 = new Room(idGenerator.generateId(5), 1, 2, 2);
         Room room5 = new Room(idGenerator.generateId(5), 1, 2, 1);
-        graphRoom.addVertex(room1);
-        graphRoom.addVertex(room2);
-        graphRoom.addVertex(room3);
-        graphRoom.addVertex(room4);
-        graphRoom.addVertex(room5);
+        Vertex v1 = graphRoom.addVertex(room1);
+        Vertex v2 = graphRoom.addVertex(room2);
+        Vertex v3 = graphRoom.addVertex(room3);
+        Vertex v4 = graphRoom.addVertex(room4);
+        Vertex v5 = graphRoom.addVertex(room5);
 
-        graphRoom.addEdge(room1, room2);
-        graphRoom.addEdge(room1, room3);
-        graphRoom.addEdge(room1, room4);
-        graphRoom.addEdge(room4, room5);
+        graphRoom.addEdge(v1, v2);
+        graphRoom.addEdge(v1, v3);
+        graphRoom.addEdge(v1, v4);
+        graphRoom.addEdge(v4, v5);
 
-        System.out.println(graphRoom);
+        String roomTest = graphRoom.getAdjVertex().get(v1).get(0).getRoom().getId();
+        System.out.println(roomTest);
+        System.out.println(graphRoom.getAdjVertex().get(v1));
     }
 
     public void addItemToEntity(Entity entity, Item item) {

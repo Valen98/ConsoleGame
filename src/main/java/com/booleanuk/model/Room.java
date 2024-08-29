@@ -47,6 +47,9 @@ public class Room {
         return this.isPlayerInside;
     }
 
+    public String getId() {
+        return id;
+    }
 }
 
 

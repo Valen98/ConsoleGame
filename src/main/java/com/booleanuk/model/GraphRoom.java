@@ -2,17 +2,16 @@ package com.booleanuk.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class GraphRoom {
 
     private HashMap<Vertex, ArrayList<Vertex>> adjVertices;
-
     public GraphRoom() {
         adjVertices = new HashMap<>();
+
     }
 
-    public Map<Vertex, ArrayList<Vertex>> getAdjVertex() {
+    public HashMap<Vertex, ArrayList<Vertex>> getAdjVertex() {
         return adjVertices;
     }
 
@@ -20,8 +19,11 @@ public class GraphRoom {
         this.adjVertices = adjVertex;
     }
 
-    public void addVertex(Room room) {
-        adjVertices.putIfAbsent(new Vertex(room), new ArrayList<>());
+    public Vertex addVertex(Room room) {
+        Vertex v1 = new Vertex(room);
+        adjVertices.putIfAbsent(v1, new ArrayList<>());
+        System.out.println(adjVertices);
+        return v1;
     }
 
     public void removeVertex(Room room) {
@@ -30,11 +32,14 @@ public class GraphRoom {
         adjVertices.remove(new Vertex(room));
     }
 
-    public void addEdge(Room room, Room room2) {
-        Vertex v1 = new Vertex(room);
-        Vertex v2 = new Vertex(room2);
+
+
+    public void addEdge(Vertex v1, Vertex v2) {
         adjVertices.get(v1).add(v2);
         adjVertices.get(v2).add(v1);
+
+        System.out.println(v1.getRoom().getId() + " -> " + v2.getRoom().getId());
+
     }
 
     public void removeEdge(Room room, Room room2) {

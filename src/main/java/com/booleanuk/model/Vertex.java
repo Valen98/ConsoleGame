@@ -6,5 +6,11 @@ public class Vertex {
         this.room = room;
     }
 
+    public Vertex getVertex() {
+        return this;
+    }
 
+    public Room getRoom() {
+        return room;
+    }
 }
