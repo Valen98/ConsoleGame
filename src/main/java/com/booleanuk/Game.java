@@ -1,5 +1,6 @@
 package com.booleanuk;
 
+import com.booleanuk.model.GraphRoom;
 import com.booleanuk.model.entity.CharacterController;
 import com.booleanuk.model.entity.Entity;
 import com.booleanuk.model.entity.Player;
@@ -8,12 +9,14 @@ import com.booleanuk.model.Room;
 import com.booleanuk.model.spell.Spell;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Game {
     IdGenerator idGenerator;
     private Player player;
     private CharacterController characterController;
     private ArrayList<Room> rooms;
+    Random r;
 
     public Game(Player player) {
         this.idGenerator =  new IdGenerator();
@@ -31,9 +34,25 @@ public class Game {
     }
 
     public void generateRooms() {
-        for(int i = 0; i < 10; i++) {
-            // this.rooms.add(new Room(roomLVL, nr_enemies, doors));
-        }
+        GraphRoom graphRoom = new GraphRoom();
+
+        Room room1 = new Room(idGenerator.generateId(5), 1, 2, 3);
+        Room room2 = new Room(idGenerator.generateId(5), 1, 2, 1);
+        Room room3 = new Room(idGenerator.generateId(5), 1, 2, 1);
+        Room room4 = new Room(idGenerator.generateId(5), 1, 2, 2);
+        Room room5 = new Room(idGenerator.generateId(5), 1, 2, 1);
+        graphRoom.addVertex(room1);
+        graphRoom.addVertex(room2);
+        graphRoom.addVertex(room3);
+        graphRoom.addVertex(room4);
+        graphRoom.addVertex(room5);
+
+        graphRoom.addEdge(room1, room2);
+        graphRoom.addEdge(room1, room3);
+        graphRoom.addEdge(room1, room4);
+        graphRoom.addEdge(room4, room5);
+
+        System.out.println(graphRoom);
     }
 
     public void addItemToEntity(Entity entity, Item item) {
