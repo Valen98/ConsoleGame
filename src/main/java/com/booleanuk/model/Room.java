@@ -7,13 +7,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Room {
+    private String id;
     private int lvl;
     private int nrOfEnemies;
     private int doors;
+    private boolean isPlayerInside = false;
     private ArrayList<Entity> enemyList;
     private ArrayList<Item> droppedItems;
 
-    public Room(int lvl, int nrOfEnemies, int doors){
+    public Room(String id, int lvl, int nrOfEnemies, int doors){
+        this.id = id;
         this.enemyList = new ArrayList<>();
         this.droppedItems = new ArrayList<>();
         this.lvl = lvl;
@@ -32,6 +35,21 @@ public class Room {
         }
     }
 
+    public void goIntoRoom() {
+        this.isPlayerInside = true;
+    }
+
+    public void goOutOfRoom() {
+        this.isPlayerInside = false;
+    }
+
+    public boolean getIsPlayerInside() {
+        return this.isPlayerInside;
+    }
+
+    public String getId() {
+        return id;
+    }
 }
 
 
