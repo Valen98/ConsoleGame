@@ -15,6 +15,10 @@ public class GraphRoom {
         return adjVertices;
     }
 
+    public ArrayList<Vertex> getAdjVerticesOfVertex(Vertex vertex) {
+        return adjVertices.get(vertex);
+    }
+
     public void setAdjVertex(HashMap<Vertex, ArrayList<Vertex>> adjVertex) {
         this.adjVertices = adjVertex;
     }
@@ -31,8 +35,6 @@ public class GraphRoom {
         adjVertices.values().stream().forEach(r -> r.remove(v));
         adjVertices.remove(new Vertex(room));
     }
-
-
 
     public void addEdge(Vertex v1, Vertex v2) {
         adjVertices.get(v1).add(v2);
