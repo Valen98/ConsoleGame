@@ -50,6 +50,18 @@ public class Room {
     public String getId() {
         return id;
     }
+
+    public ArrayList<Entity> getEnemyList() {
+        return this.enemyList;
+    }
+
+    public int getNrOfEnemies() {
+        return this.nrOfEnemies;
+    }
+
+    public int getDoors() {
+        return doors;
+    }
 }
 
 

@@ -16,15 +16,20 @@ public class Game {
     IdGenerator idGenerator;
     private Player player;
     private CharacterController characterController;
-    private ArrayList<Room> rooms;
+    private  GraphRoom graphRoom;
     Random r;
+    private Vertex currentVertex;
+    private final int totalRooms = 10;
+    private ArrayList<Vertex> vertexArrayList;
+
 
     public Game(Player player) {
         this.idGenerator =  new IdGenerator();
         this.player = player;
         this.characterController = new CharacterController();
-        this.rooms = new ArrayList<>();
+        this.graphRoom = new GraphRoom();
         this.r = new Random();
+        this.vertexArrayList = new ArrayList<>();
     }
 
     public void attack(Entity attacker, Entity enemy){
@@ -36,19 +41,31 @@ public class Game {
     }
 
     public void generateRooms() {
-        GraphRoom graphRoom = new GraphRoom();
-
         for (int i = 0; i < 4; i++) {
             int numOfDoors = r.nextInt(1, 3);
             int randomEnemies = r.nextInt(3);
-            Room room = new Room(idGenerator.generateId(5), 1, randomEnemies, numOfDoors);
-            Vertex v1 = graphRoom.addVertex(room);
-            for (int j = 0; j < numOfDoors; j++) {
-                Room adjRoom = new Room(idGenerator.generateId(5),1,  randomEnemies, 1);
-                Vertex v2 = graphRoom.addVertex(adjRoom);
-                graphRoom.addEdge(v1, v2);
+            Vertex v1 = graphRoom.addVertex(createRoom(randomEnemies, numOfDoors));
+            this.vertexArrayList.add(v1);
+            if(i == 0) {
+                //Starting position
+                currentVertex = v1;
             }
         }
+        System.out.println("Rooms = " + vertexArrayList);
+        for (int i = 0; i < this.totalRooms; i++) {
+            System.out.println(this.vertexArrayList.get(i).getRoom().getId());
+            for (int j = 0; j < this.vertexArrayList.get(i).getRoom().getDoors(); j++) {
+                Vertex parentVertex = this.vertexArrayList.get(i);
+                int numOfDoors = r.nextInt(1, 3);
+                int randomEnemies = r.nextInt(3);
+                Vertex neighbor = graphRoom.addVertex(createRoom(randomEnemies, numOfDoors));
+                this.vertexArrayList.add(neighbor);
+                graphRoom.addEdge(parentVertex, neighbor);
+            }
+            //System.out.println("adj vertex for " + vertexArrayList.get(i) + " linked to " + graphRoom.getAdjVerticesOfVertex(vertexArrayList.get(i)));
+        }
+
+
         /*
         Room room1 = new Room(idGenerator.generateId(5), 1, 2, 3);
         Room room2 = new Room(idGenerator.generateId(5), 1, 2, 1);
@@ -66,7 +83,31 @@ public class Game {
         graphRoom.addEdge(v1, v4);
         graphRoom.addEdge(v4, v5);
             */
-        System.out.println(graphRoom.getAdjVertex());
+        //System.out.println(graphRoom.getAdjVertex());
+    }
+
+    public Room createRoom(int randomEnemies, int numOfDoors) {
+        return new Room(idGenerator.generateId(5), 1, randomEnemies, numOfDoors);
+    }
+
+    public Vertex getCurrentVertex() {
+        //System.out.println(currentVertex.getRoom().getId());
+        return currentVertex;
+    }
+
+    public GraphRoom getGraphRoom() {
+        return graphRoom;
+    }
+
+    public Vertex goIntoVertex(int roomNum) {
+        if(roomNum < getGraphRoom().getAdjVerticesOfVertex(currentVertex).size()) {
+            this.currentVertex = getGraphRoom().getAdjVerticesOfVertex(currentVertex).get(roomNum);
+        }
+        return this.currentVertex;
+    }
+
+    public ArrayList<Vertex> getVertexArrayList() {
+        return vertexArrayList;
     }
 
     public void addItemToEntity(Entity entity, Item item) {
