@@ -31,7 +31,6 @@ public class Room {
     public void addEnemy(HashMap<String, Entity> enemies){
         for(String id : enemies.keySet()){
             this.enemyList.add(enemies.get(id));
-
         }
     }
 
@@ -57,6 +56,13 @@ public class Room {
 
     public int getNrOfEnemies() {
         return this.nrOfEnemies;
+    }
+
+    public void generateEnemies() {
+
+        for (int i = 0; i < this.nrOfEnemies; i++) {
+
+        }
     }
 
     public int getDoors() {

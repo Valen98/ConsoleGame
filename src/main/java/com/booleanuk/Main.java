@@ -2,7 +2,11 @@ package com.booleanuk;
 
 import com.booleanuk.model.GraphRoom;
 import com.booleanuk.model.Vertex;
+import com.booleanuk.model.entity.Entity;
 import com.booleanuk.model.entity.Player;
+import com.booleanuk.model.entity.enemies.Enemy;
+import com.booleanuk.model.item.weapon.Dagger;
+import com.booleanuk.model.item.weapon.Weapon;
 
 import java.util.Scanner;
 
@@ -25,7 +29,6 @@ public class Main {
             System.out.println("Neighbor room: " + vertex.getRoom().getId());
             System.out.println("Link is :" +currentVertex.getRoom().getId() + " -> " + vertex.getRoom().getId());
         }
-
          */
 
         for (Vertex vertex: game.getVertexArrayList()) {
@@ -37,10 +40,24 @@ public class Main {
             }
         }
 
-        
+        game.getPlayer().addItemToInventory(new Dagger("Cool Dagger", 1, 10, 20, 0.25f, 1.5f, 0.25f));
+
+        game.getPlayer().setWeapon((Weapon) game.getPlayer().getInventory().getItems().getFirst());
+        System.out.println(game.getPlayer().getWeapon());
         boolean quit = true;
         int checker = 0;
         while (quit) {
+            for(Entity enemy: currentVertex.getRoom().getEnemyList()) {
+                while (enemy.getHP() > 0) {
+                    System.out.println(enemy.getName());
+                    System.out.println(enemy.getHP());
+                    System.out.println(enemy.getName() + " needs to be killed! \nPress 'a' to attack!");
+                    String userInput = scanner.nextLine();
+                    if(userInput.equalsIgnoreCase("a")) {
+                        game.attack(game.getPlayer(), enemy);
+                    }
+                }
+            }
 
             int counter = 0;
             System.out.println("Current room is: " + currentVertex.getRoom().getId());

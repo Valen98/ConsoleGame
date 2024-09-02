@@ -2,14 +2,19 @@ package com.booleanuk;
 
 import com.booleanuk.model.GraphRoom;
 import com.booleanuk.model.Vertex;
+import com.booleanuk.model.element.Fire;
 import com.booleanuk.model.entity.CharacterController;
 import com.booleanuk.model.entity.Entity;
 import com.booleanuk.model.entity.Player;
+import com.booleanuk.model.entity.enemies.Enemy;
+import com.booleanuk.model.entity.enemies.Goblin;
 import com.booleanuk.model.item.Item;
 import com.booleanuk.model.Room;
+import com.booleanuk.model.item.weapon.Dagger;
 import com.booleanuk.model.spell.Spell;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class Game {
@@ -87,7 +92,15 @@ public class Game {
     }
 
     public Room createRoom(int randomEnemies, int numOfDoors) {
-        return new Room(idGenerator.generateId(5), 1, randomEnemies, numOfDoors);
+        Room room = new Room(idGenerator.generateId(5), 1, randomEnemies, numOfDoors);
+        HashMap<String, Entity> enemies = new HashMap<>();
+        for (int i = 0; i < randomEnemies; i++) {
+            Entity goblin = new Goblin(new Fire(), 1);
+            goblin.setWeapon(new Dagger("Cool Dagger", 1, 10, 20, 0.25f, 1.5f, 0.25f));
+            enemies.put(idGenerator.generateId(5), new Goblin(new Fire(), 1));
+        }
+        room.addEnemy(enemies);
+        return room;
     }
 
     public Vertex getCurrentVertex() {
@@ -115,4 +128,7 @@ public class Game {
         entity.addItemToInventory(item);
     }
 
+    public Player getPlayer() {
+        return this.player;
+    }
 }
